@@ -1,0 +1,55 @@
+Podokban van az imagek - ezek servicekkel kommunikalnak. Selectorral valasszuk ki oket
+
+hub/laszlobarabas/imagenev:version
+
+kubectl run nodejs-deployment --image=laszlobarabas/nodejs-ci-demo:1.0 --port=3000
+
+kubectl get deployments
+
+kubectl get pods
+
+logs -f nodejs-deployment-[szamok]   // podsbol van
+
+kubectl exec nodejs-deployment-[szamok] -i -t -- bash
+
+
+root@...../user/src/app#:
+       ls
+       exit
+
+
+kubectl expose deploy nodejs-deployment --port 3000 --name=nodejs-service                     // service letrehozas   (default type ClusterIP, --type=NodePort)
+//service "nodejs-service exposed"
+
+
+kubectl get services
+//hello-minikube
+//kubernetes
+//nodejs-service
+
+minikube service list                            // no node port !!! a service nem enged kulso kapcsolatokat,      ha van port bongeszo
+
+
+kubectl get service nodejs-service -o yaml        //service leirasa     vagy kubectl describe service nodejs-service
+
+//type: ClusterIP                             // csak egymas kozott erhetoek el az ilyen servicek 
+//type: NodePort                   //kivulrul is elerheto !!!
+
+kubectl delete service nodejs-service
+
+
+portok:
+       port : Service
+       containerPort: container   // expose soran jon letre
+       targetPort: pod      // generalodik
+       nodePort: node   (virtualis vagy igazi gep)
+
+
+
+
+kubectl set image deployment/nodejs-deployment nodejs-deployment=laszlobarabas/nodejs-ci-demo:1.1                      // uj verzio telepitese
+
+kubectl rollout history deployment/nodejs-deployment    // verziok
+kubectl rollout undo deployment/nodejs-deployment
+
+
