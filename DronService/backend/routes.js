@@ -8,7 +8,7 @@ module.exports = (app) => {
   app.get('/api/order', (req, res) => {
 
     console.log("vmmi");
-    res.send(req.body.order)
+    res.send("kos")
   });
 
   app.post('/api/orders', (req, res) => {
