@@ -16,12 +16,12 @@ const CardValidator = module.exports = function () {
 };
 
 
-DbWs.prototype.init = function () {
+CardValidator.prototype.init = function () {
   const self = this;
 };
 
 
-DbWs.prototype.validateCard = function (cardnumber,date,cvv,_callback) {
+CardValidator.prototype.validateCard = function (cardnumber,cardexpiration,cvv,_callback) {
     return _callback(true);
 };
 

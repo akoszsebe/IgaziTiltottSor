@@ -51,4 +51,15 @@ module.exports = (app) => {
       });
   });
 
+  app.get('/api/users/one', (req, res) => {
+    console.log(req.headers.useremail)
+    request( { headers: { 'useremail' : req.headers.useremail} ,
+               uri: "http://localhost:61241/api/users/one",
+               method: 'GET'  }, 
+    function(error, response, body) {
+      console.log(body);
+      res.send(body)
+    })
+  });
+
 };
