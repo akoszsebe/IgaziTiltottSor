@@ -62,4 +62,11 @@ module.exports = (app) => {
     })
   });
 
+  app.get('/api/storage', (req, res) => {
+    request("http://storage-service:8080/api/v1/storage", function(error, response, body) {
+      console.log(body);
+      res.send(body)
+    })
+  });
+
 };
