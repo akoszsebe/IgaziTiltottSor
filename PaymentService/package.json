@@ -1,0 +1,22 @@
+{
+  "name": "paymentservice",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "engines": {
+    "node": "8.6.0",
+    "npm": "8.6.0"
+  },
+  "private": true,
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.0",
+    "express-session": "^1.15.6",
+    "passport": "^0.4.0",
+    "passport-facebook": "^2.1.1",
+    "path": "^0.12.7",
+    "request": "2.87.0"
+  }
+}
