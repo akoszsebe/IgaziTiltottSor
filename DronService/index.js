@@ -6,7 +6,7 @@ let express = require('express'),
   http = require('http').Server(app)
 
 // set port
-app.set('port', process.env.PORT || 8080);
+app.set('port', process.env.PORT || 8082);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));

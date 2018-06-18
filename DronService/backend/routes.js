@@ -13,18 +13,19 @@ module.exports = (app) => {
 
   app.post('/api/orders', (req, res) => {
 
-    var order = req.body.order
+    var order = req.body
+    console.log(order);
     //var timer = Math.floor(Math.random() * Math.floor(10)) + 5;
-    var timer = 3000;
+    var timer = 8000;
     //if array.length == 0) {
     setTimeout(function () {
-
+      console.log("$$$$$$$$$$$$$$$$$$$$$$   "+order.orderid)
       request.post({
         headers: {
           'content-type': 'application/json'
         },
-        uri: "http://localhost:5000/api/v1/ondrone/" + order.orderId,
-        body: req.body.order,
+        uri: "http://localhost:5000/api/v1/orders/ondrone/" + order.orderid,
+        body: {},
         method: 'POST',
         json: true
       },
@@ -34,14 +35,13 @@ module.exports = (app) => {
         });
 
         setTimeout( function () {
-
-
+          console.log("$$$$$$$$$$$$$$$$$$$$$$   "+order.orderid)
           request.post({
             headers: {
               'content-type': 'application/json'
             },
-            uri: "http://localhost:5000/api/v1/delivered/" + order.orderId,
-            body: req.body.order,
+            uri: "http://localhost:5000/api/v1/orders/delivered/" + order.orderid,
+            body: {},
             method: 'POST',
             json: true
           },
