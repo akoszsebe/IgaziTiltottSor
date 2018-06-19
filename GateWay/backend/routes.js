@@ -14,7 +14,7 @@ module.exports = (app) => {
   app.get('/api/orders/byuser', (req, res) => {
     console.log(req.headers.useremail)
     request( { headers: { 'useremail' : req.headers.useremail} ,
-               uri: "http://order-service:5000/api/v1/orders/byuser",
+               uri: "http://order-service:8080/api/v1/orders/byuser",
                method: 'GET'  }, 
     function(error, response, body) {
       console.log(body);
