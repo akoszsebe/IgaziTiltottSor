@@ -17,22 +17,22 @@ printf "${GREEN} --Building STORAGE SERVICE ${NC}\n"
 source ./cleanScript.sh storage-service
 source ./buildScript.sh storage-service ../StorageService
 
-# printf "${GREEN} --Building ORDER SERVICE ${NC}\n"
+printf "${GREEN} --Building ORDER SERVICE ${NC}\n"
 
-# source ./cleanScript.sh order-service
-# source ./buildScript.sh order-service ../OrderService
+source ./cleanScript.sh order-service
+source ./buildScript.sh order-service ../OrderService
 
-# printf "${GREEN} --Building PAYMENT SERVICE ${NC}\n"
+printf "${GREEN} --Building PAYMENT SERVICE ${NC}\n"
 
-# source ./cleanScript.sh payment-service
-# source ./buildScript.sh payment-service ../PaymentService
+source ./cleanScript.sh payment-service
+source ./buildScript.sh payment-service ../PaymentService
 
-# printf "${GREEN} --Building DRON SERVICE ${NC}\n"
+printf "${GREEN} --Building DRON SERVICE ${NC}\n"
 
-# source ./cleanScript.sh drone-service
-# source ./buildScript.sh drone-service ../DronService
+source ./cleanScript.sh drone-service
+source ./buildScript.sh drone-service ../DronService
 
-# printf "${GREEN} --Building user SERVICE ${NC}\n"
+printf "${GREEN} --Building user SERVICE ${NC}\n"
 
-# source ./cleanScript.sh user-service
-# source ./buildScript.sh user-service ../UserService
+source ./cleanScript.sh user-service
+source ./buildScript.sh user-service ../UserService
