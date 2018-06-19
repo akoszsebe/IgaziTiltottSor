@@ -24,7 +24,7 @@ module.exports = (app) => {
         headers: {
           'content-type': 'application/json'
         },
-        uri: "http://localhost:5000/api/v1/orders/ondrone/" + order.orderid,
+        uri: "http://order-service:8080/api/v1/orders/ondrone/" + order.orderid,
         body: {},
         method: 'POST',
         json: true
@@ -40,7 +40,7 @@ module.exports = (app) => {
             headers: {
               'content-type': 'application/json'
             },
-            uri: "http://localhost:5000/api/v1/orders/delivered/" + order.orderid,
+            uri: "http://order-service:8080/api/v1/orders/delivered/" + order.orderid,
             body: {},
             method: 'POST',
             json: true
