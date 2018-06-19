@@ -34,18 +34,23 @@ namespace UserService.Controllers
         [HttpPost]
         public bool Post([FromBody]User user)
         {
-            Random rnd = new Random();
-            int id = rnd.Next(1000, 5000);
             Console.WriteLine("Beszur ujj elem " + user.useremail);
-            _userRepository.Insert(new User
+            if (!_userRepository.DoesItemExist(user.useremail))
             {
-                useremail = user.useremail,
-                address = user.address,
-                phone = user.phone,
-                cardnumber = user.cardnumber,
-                cardexpiration = user.cardexpiration,
-                cvv = user.cvv
-            });
+                _userRepository.Insert(new User
+                {
+                    useremail = user.useremail,
+                    address = user.address,
+                    phone = user.phone,
+                    cardnumber = user.cardnumber,
+                    cardexpiration = user.cardexpiration,
+                    cvv = user.cvv
+                });
+            }
+            else
+            {
+                _userRepository.Update(user);
+            }
             return true;
         }
     }

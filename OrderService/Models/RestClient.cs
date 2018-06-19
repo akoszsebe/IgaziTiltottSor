@@ -9,22 +9,28 @@ namespace DotNetCore.Models
 {
 class RestClient
     { 
-        public static void SendOrderToDrone()
+        public static void SendOrderToDrone(Order order)
         {
-            var api_url = "/Station/Read";
-            string ip = "portal.clujbike.eu";
-            string port = "";
+            var api_url = "/api/orders";
+            string ip = "localhost";
+            string port = ":8081";
             string protocol = "http";
+            string url = "" + protocol + "://" + ip + "" + port + api_url;
 
-            ASCIIEncoding encoder = new ASCIIEncoding();
-            byte[] data = encoder.GetBytes("");
-            HttpWebRequest request = WebRequest.Create(@"" + protocol + "://" + ip + "" + port + api_url) as HttpWebRequest;
-            request.ContentType = "application/x-www-form-urlencoded";//"application/json"  //"application/x-www-form-urlencoded"
+            string postData = Newtonsoft.Json.JsonConvert.SerializeObject(order);
+            Console.WriteLine("%%%%  "+ url +"   "+ postData);
+            ASCIIEncoding encoding = new ASCIIEncoding ();
+            byte[] byte1 = encoding.GetBytes (postData);
+            HttpWebRequest request = WebRequest.Create(url) as HttpWebRequest;
+            request.ContentType = "application/json";//"application/x-www-form-urlencoded";//"application/json"  //"application/x-www-form-urlencoded"
             request.Method = "POST";
-            request.ContentLength = data.Length;
             request.Expect = "application/json";
             request.Timeout = 5000;
-
+            System.Net.ServicePointManager.Expect100Continue = false;
+            request.ContentLength = byte1.Length;
+            Stream newStream = request.GetRequestStream ();
+            newStream.Write (byte1, 0, byte1.Length);
+            newStream.Close();
             try
             {
                 using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)

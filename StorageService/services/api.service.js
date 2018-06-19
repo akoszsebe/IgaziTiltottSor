@@ -8,7 +8,7 @@ module.exports = {
 
 	// More info about settings: http://moleculer.services/docs/moleculer-web.html
 	settings: {
-		port: process.env.PORT || 8080,
+		port: process.env.PORT || 8081,
 
 		routes: [{
 			path: "/api/v1/",

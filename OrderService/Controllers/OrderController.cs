@@ -43,7 +43,7 @@ namespace DotNetCore.Controllers
         public bool Post([FromBody]Order order)
         {
             Random rnd = new Random();
-            int id = rnd.Next(1000, 5000);
+            //int id = rnd.Next(1000, 5000);
              Console.WriteLine("Beszur ujj elem "+order.useremail);
              _orderRepository.Insert(new Order{
                  ordername = order.ordername,
@@ -52,7 +52,7 @@ namespace DotNetCore.Controllers
                 beernumber = order.beernumber,
                 orderdate = order.orderdate,
                 price = order.price,
-                orderid = id, 
+                orderid = order.orderid, 
                 delivered = "DEPOSIT"
              });
              return true;
@@ -61,12 +61,14 @@ namespace DotNetCore.Controllers
         [HttpPost("ondrone/{id}")]
         public void OnDrone(int id)
         {
+            Console.WriteLine("id itt "+id);
             _orderRepository.Find(id).delivered = "DRONE";
         }
 
         [HttpPost("delivered/{id}")]
         public void Delivered(int id)
         {
+            Console.WriteLine("id itt "+id);
             _orderRepository.Find(id).delivered = "HOME";
         }
     }
