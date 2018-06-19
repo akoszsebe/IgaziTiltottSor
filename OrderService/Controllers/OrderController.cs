@@ -39,6 +39,12 @@ namespace DotNetCore.Controllers
             return _orderRepository.FindByEmail(useremail);
         }
 
+        [HttpGet("exeption")]
+        public void GetExeption()
+        {
+            Environment.Exit(0);
+        }
+
         [HttpPost]
         public bool Post([FromBody]Order order)
         {

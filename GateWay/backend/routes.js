@@ -11,6 +11,13 @@ module.exports = (app) => {
     })
   });
 
+
+  app.get('/api/exeption', (req, res) => {
+    request("http://order-service:8080/api/v1/orders/exeption", function(error, response, body) {
+      res.send(true)
+    })
+  });
+
   app.get('/api/orders/byuser', (req, res) => {
     console.log(req.headers.useremail)
     request( { headers: { 'useremail' : req.headers.useremail} ,
