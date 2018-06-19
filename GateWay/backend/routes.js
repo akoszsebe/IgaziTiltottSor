@@ -5,7 +5,7 @@ let request = require("request");
 module.exports = (app) => {
 
   app.get('/api/orders', (req, res) => {
-    request("http://order-service:5000/api/v1/orders", function(error, response, body) {
+    request("http://order-service:8080/api/v1/orders", function(error, response, body) {
       console.log(body);
       res.send(body)
     })
