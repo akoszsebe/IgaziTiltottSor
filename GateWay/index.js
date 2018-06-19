@@ -3,7 +3,8 @@
 let express = require('express'),
   app = express(),
   bodyParser = require('body-parser'),
-  http = require('http').Server(app)
+  http = require('http').Server(app),
+  request = require("request");
 
 
 // set port
@@ -19,6 +20,21 @@ app.use((req, res, next) => {
   res.header('Access-Control-Allow-Credentials', 'true');
   next()
 });
+
+app.use(function (req, res, next) {
+  console.log('Time:', Date.now())
+  request("https://graph.facebook.com/me?access_token="+req.query.access_token, function(error, response, body) {
+          body = JSON.parse(body);
+          console.log(req.query.access_token,body.error);
+          if (body.error){
+            res.status(400);
+            res.send('unauthenticated');
+            return;
+          }	
+          next()
+  })
+})
+
 
 // run
 http.listen(app.get('port'), () => {

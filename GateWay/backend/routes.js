@@ -83,6 +83,22 @@ module.exports = (app) => {
     })
   });
 
+  app.post('/api/storage', (req, res) => {
+    console.log(req.body);
+    request.post( { 
+      headers : {
+        'content-type': 'application/json'
+      },
+        uri : "http://localhost:8081/api/v1/storage",
+        body : req.body,           
+        method: 'POST',
+        json: true }, function(error, response, body) {
+          //body = JSON.parse(body);
+          console.log(body);
+          res.send(body)
+    })
+  });
+
   app.post('/api/users', (req, res) => {
     console.log(req.body)
     request.post( { 
