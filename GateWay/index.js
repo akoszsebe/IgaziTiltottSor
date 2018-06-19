@@ -45,3 +45,67 @@ exports = module.exports = app;
 
 // routing
 require('./backend/routes')(app);
+
+function fill() {
+
+  var beer1 = {
+      "beername": "Igazi",
+      "price": 3,
+      "quantity": 10,
+      "_id" : 1
+  };
+
+  var beer2 = {
+      "beername": "Tiltott",
+      "price": 3,
+      "quantity": 10,
+      "_id" : 2
+  };
+
+  var beer3 = {
+      "beername": "Jegafonya",
+      "price": 4,
+      "quantity": 56,
+      "_id" : 3  
+  };
+
+  var beer4 = {
+      "beername": "Szekely",
+      "price": 4,
+      "quantity": 5,
+      "_id" : 4  
+  }
+
+  var beer5 = {
+      "beername": "Barna",
+      "price": 6,
+      "quantity": 100,
+      "_id" : 5  
+  };
+
+  callStorage(beer1)
+  callStorage(beer2)
+  callStorage(beer3)
+  callStorage(beer4)
+  callStorage(beer5)
+
+}
+
+
+function callStorage(beer) {
+  request.post({
+      headers: {
+          'content-type': 'application/json'
+      },
+      uri: "http://storage-service:8080/api/v1/storage",
+      body: beer,
+      method: 'POST',
+      json: true
+  },
+      function (error, response, body) {
+          console.log(error, body);
+
+      });
+}
+
+fill()

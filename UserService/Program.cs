@@ -20,6 +20,7 @@ namespace UserService
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
+                .UseUrls(urls: "http://*:8080")
                 .Build();
     }
 }

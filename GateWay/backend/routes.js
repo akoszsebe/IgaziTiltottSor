@@ -5,7 +5,7 @@ let request = require("request");
 module.exports = (app) => {
 
   app.get('/api/orders', (req, res) => {
-    request("http://localhost:5000/api/v1/orders", function(error, response, body) {
+    request("http://order-service:5000/api/v1/orders", function(error, response, body) {
       console.log(body);
       res.send(body)
     })
@@ -14,7 +14,7 @@ module.exports = (app) => {
   app.get('/api/orders/byuser', (req, res) => {
     console.log(req.headers.useremail)
     request( { headers: { 'useremail' : req.headers.useremail} ,
-               uri: "http://localhost:5000/api/v1/orders/byuser",
+               uri: "http://order-service:5000/api/v1/orders/byuser",
                method: 'GET'  }, 
     function(error, response, body) {
       console.log(body);
@@ -30,7 +30,7 @@ module.exports = (app) => {
             headers : {
               'content-type': 'application/json'
             },
-              uri : "http://localhost:5000/api/v1/orders",
+              uri : "http://order-service:8080/api/v1/orders",
               body : req.body.order,           
               method: 'POST',
               json: true }, 
@@ -41,7 +41,7 @@ module.exports = (app) => {
           headers : {
             'content-type': 'application/json'
           },
-            uri : "http://localhost:3000/api/payorder",
+            uri : "http://payment-service:8080/api/payorder",
             body : req.body.card,           
             method: 'POST',
             json: true }, 
@@ -51,7 +51,7 @@ module.exports = (app) => {
                 headers : {
                   'content-type': 'application/json'
                 },
-                  uri : "http://localhost:8082/api/orders",
+                  uri : "http://drone-service:8080/api/orders",
                   body : order,           
                   method: 'POST',
                   json: true }, 
@@ -67,7 +67,7 @@ module.exports = (app) => {
   app.get('/api/users/one', (req, res) => {
     console.log(req.headers.useremail)
     request( { headers: { 'useremail' : req.headers.useremail} ,
-               uri: "http://localhost:61241/api/users/one",
+               uri: "http://user-service:8080/api/users/one",
                method: 'GET'  }, 
     function(error, response, body) {
       console.log(body);
@@ -76,7 +76,7 @@ module.exports = (app) => {
   });
 
   app.get('/api/storage', (req, res) => {
-    request("http://localhost:8081/api/v1/storage", function(error, response, body) {
+    request("http://storage-service:8080/api/v1/storage", function(error, response, body) {
       body = JSON.parse(body);
       console.log(body.rows);
       res.send(body.rows)
@@ -89,7 +89,7 @@ module.exports = (app) => {
       headers : {
         'content-type': 'application/json'
       },
-        uri : "http://localhost:8081/api/v1/storage",
+        uri : "http://storage-service:8080/api/v1/storage",
         body : req.body,           
         method: 'POST',
         json: true }, function(error, response, body) {
@@ -105,7 +105,7 @@ module.exports = (app) => {
             headers : {
               'content-type': 'application/json'
             },
-              uri : "http://localhost:61241/api/users",
+              uri : "http://user-service:8080/api/users",
               body : req.body,           
               method: 'POST',
               json: true }, 

@@ -23,6 +23,7 @@ namespace DotNetCore
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
                 .PreferHostingUrls(true)
+                .UseUrls(urls: "http://*:8080")
                 .Build();
     }
 }
